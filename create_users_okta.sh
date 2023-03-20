@@ -1,6 +1,6 @@
 #!/bin/bash
 
-oktaURL="https://babbel.okta.com"
+oktaURL="OKTA URL"
 
 # Function to search by user
 userSearch() {
