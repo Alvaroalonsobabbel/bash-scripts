@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Origin Group ID
-og="114498"
+og="90880"
 #Destination Group ID
 dg="76054"
 #SimpleMDM base URL
@@ -13,6 +13,6 @@ while read device; do
         --header "Authorization: Basic $APIKEY"
     echo "Moved Device# $device to Group# $dg"
 done < <(curl --location --request GET "$url/$og" \
-    --header "Authorization: Basic $APIKEY" | json_pp | grep id | sed -e 's/.*\:\ \(.*\)\,/\1/' | tail -n +2)
+    --header "Authorization: Basic $APIKEY" | jq -r '[.data.relationships.devices.data[].id] | @csv' | tr ',' '\n')
 
 exit 0
